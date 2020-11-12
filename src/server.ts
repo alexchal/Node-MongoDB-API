@@ -1,5 +1,7 @@
+// import http from "http";
+// import app from "./app";
 const http = require('http');
-const app = require('./src/app');
+const app = require('./app.ts');
 
 const port = process.env.PORT || 8080;
 

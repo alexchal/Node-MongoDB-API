@@ -1,11 +1,14 @@
+// import express from "express";
+// import bodyParser from "body-parser";
+// import cors from "cors";
+// import morgan from "morgan";
 const express = require('express');
-const app = express();
-const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const morgan = require('morgan');
+const app = express();
 
-
-const usersRoutes = require('../api/routes/users');
+const usersRoutes = require('./api/routes/users.ts');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,4 +38,5 @@ app.use((error, req, res, next) => {
         req
     })
 });
+
 module.exports = app;
