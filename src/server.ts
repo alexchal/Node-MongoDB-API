@@ -1,13 +1,11 @@
-// import http from "http";
-// import app from "./app";
-const http = require('http');
-const app = require('./app.ts');
+import http from "http";
+import app from "./app";
 
 const port = process.env.PORT || 8080;
 
-const server = http.createServer(app);
+const server = new http.Server(app);
 
 server.listen(port, () => {
-    console.debug(`App listening on ${port}`);
+    console.debug(`🚀 Server Started at PORT: ${port}`);
 });
 

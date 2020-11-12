@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+import { Request, Response, NextFunction, Router } from "express";
+const router = Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
     const response = {
         users: 'Alexandros'
     }
@@ -9,4 +9,4 @@ router.get('/', (req, res, next) => {
 });
 
 
-module.exports = router;
+export default router;

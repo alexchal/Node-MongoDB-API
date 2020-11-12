@@ -1,22 +1,39 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "target": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "outDir": "dist",
+        "lib": [
+            "es2018",
+            "es5",
+            "dom"
+        ],
         "baseUrl": ".",
         "paths": {
+            "@/types/*": [
+                "./src/types/*"
+            ],
             "*": [
-                "node_modules/*",
-                "src/types/*"
+                "./src/types/*"
             ]
-        }
+        },
+        "typeRoots": [
+            "./src/types"
+        ],
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "target": "ES5",
+        "strict": true,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "outDir": "./build",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "sourceMap": false
     },
+    "exclude": [
+        "./node_modules/**/*",
+        "./build/**/*"
+    ],
     "include": [
-        "src/**/*"
+        "./src/**/*"
     ]
 }
