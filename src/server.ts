@@ -8,4 +8,3 @@ const server = new http.Server(app);
 server.listen(port, () => {
     console.debug(`🚀 Server Started at PORT: ${port}`);
 });
-
