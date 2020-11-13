@@ -1,11 +1,11 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express, { Request, Response, Application, NextFunction } from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import morgan from "morgan";
 
+import usersRoutes from "./api/routes/users";
 
-const usersRoutes = require('../api/routes/users');
+const app: Application = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,13 +20,12 @@ app.use(cors({
 // Routes which should handle requests
 app.use('/api/users', usersRoutes);
 
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next) => {
     const error = new Error('Not Found');
-    error.status = 404;
     next(error);
 })
 
-app.use((error, req, res, next) => {
+app.use((error: { status: any; message: any; }, req: Request, res: Response, next: NextFunction) => {
     res.status(error.status || 500);
     res.json({
         error: {
@@ -35,4 +34,5 @@ app.use((error, req, res, next) => {
         req
     })
 });
-module.exports = app;
+
+export default app;
