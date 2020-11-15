@@ -4,10 +4,12 @@ import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import helmet from "helmet";
+import dotnev from "dotenv";
 
 import usersRoutes from "./api/routes/users";
 
 const app: Application = express();
+dotnev.config();
 
 app.use(helmet());
 app.use(morgan("dev"));
