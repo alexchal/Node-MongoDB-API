@@ -16,7 +16,7 @@ router.get("/", (req: Request, res: Response, next: NextFunction) => {
                         email: doc.email,
                         request: {
                             type: "GET",
-                            url: "www.google.com/" + doc._id
+                            url: `http://localhost:8080/api/products/${doc._id}`
                         }
                     };
                 })

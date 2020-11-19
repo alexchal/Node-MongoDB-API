@@ -7,6 +7,7 @@ import helmet from "helmet";
 import dotnev from "dotenv";
 
 import usersRoutes from "./api/routes/users";
+import productsRoutes from "./api/routes/products";
 
 const app: Application = express();
 dotnev.config();
@@ -26,6 +27,7 @@ app.use(
 
 // Routes which should handle requests
 app.use("/api/users", usersRoutes);
+app.use("/api/products", productsRoutes);
 
 mongoose.connect(
     "mongodb+srv://node-mongo-app:" +
