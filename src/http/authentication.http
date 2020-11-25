@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:8080/api
+@userId = ""
+
+POST {{baseUrl}}/user/signup HTTP/1.1
+content-type: application/json
+
+{
+    "email": "chalvantzis12@test.com",
+    "password": "testtest12"
+}
+
+###
+
+POST {{baseUrl}}/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "chalvantzis12@test.com",
+    "password": "testtest12"
+}
+
+
+###
+
+DELETE {{baseUrl}}/user/{{userId}} HTTP/1.1
+content-type: application/json
+
+{
+    "email": "chalvantzis12@test23.com",
+    "password": "testtest12"
+}

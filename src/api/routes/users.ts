@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction, Router } from "express";
+// Models
 import { User } from "../models/user";
 
 const router = Router();

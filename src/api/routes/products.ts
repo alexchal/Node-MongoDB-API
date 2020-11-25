@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import multer from "multer";
+// Models
 import { Product } from "../models/product";
 
 const router = Router();
