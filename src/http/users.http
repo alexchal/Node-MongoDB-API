@@ -1,4 +1,6 @@
-GET http://localhost:8080/api/users HTTP/1.1
+@baseUrl = http://localhost:8080/api
+
+GET {{baseUrl}}/users HTTP/1.1
 Content-Type: application/json
 
 ###
