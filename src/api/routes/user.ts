@@ -4,47 +4,50 @@ import bcrypt from "bcrypt";
 import jtw from "jsonwebtoken";
 // Models
 import { User } from "../models/user";
+import { signUp } from "../controllers/AuthController";
 
 const router = Router();
 
-router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
-    User.find({ email: req.body.email })
-        .exec()
-        .then((user) => {
-            if (user.length >= 1) {
-                return res.status(409).json({
-                    message: "Email alreadt exists"
-                });
-            } else {
-                bcrypt.hash(req.body.password, 10, (err, hash) => {
-                    if (err) {
-                        return res.status(500).json({
-                            error: err
-                        });
-                    } else {
-                        const user = new User({
-                            _id: new mongoose.Types.ObjectId(),
-                            email: req.body.email,
-                            password: hash
-                        });
-                        user.save()
-                            .then((result) => {
-                                console.log("req", result);
-                                res.status(201).json({
-                                    message: "User created"
-                                });
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                                res.status(201).json({
-                                    error: err
-                                });
-                            });
-                    }
-                });
-            }
-        });
-});
+router.post("/signup", signUp);
+
+// router.post("/signup", (req: Request, res: Response, next: NextFunction) => {
+//     User.find({ email: req.body.email })
+//         .exec()
+//         .then((user) => {
+//             if (user.length >= 1) {
+//                 return res.status(409).json({
+//                     message: "Email alreadt exists"
+//                 });
+//             } else {
+//                 bcrypt.hash(req.body.password, 10, (err, hash) => {
+//                     if (err) {
+//                         return res.status(500).json({
+//                             error: err
+//                         });
+//                     } else {
+//                         const user = new User({
+//                             _id: new mongoose.Types.ObjectId(),
+//                             email: req.body.email,
+//                             password: hash
+//                         });
+//                         user.save()
+//                             .then((result) => {
+//                                 console.log("req", result);
+//                                 res.status(201).json({
+//                                     message: "User created"
+//                                 });
+//                             })
+//                             .catch((err) => {
+//                                 console.log(err);
+//                                 res.status(201).json({
+//                                     error: err
+//                                 });
+//                             });
+//                     }
+//                 });
+//             }
+//         });
+// });
 
 router.post("/login", (req: Request, res: Response, next: NextFunction) => {
     User.find({ email: req.body.email })

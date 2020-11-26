@@ -5,8 +5,8 @@ POST {{baseUrl}}/user/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chalvantzis12@test.com",
-    "password": "testtest12"
+    "email": "chalvantzis19@test.com",
+    "password": "testtest19"
 }
 
 ###
