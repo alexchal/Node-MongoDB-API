@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { getUsersService } from "../services/userService";
+import { fetchUsersService } from "../services/userService";
 
-const getUsers = async function (
+export const fetchUsers = async function (
     req: Request,
     res: Response,
     next: NextFunction
 ) {
     try {
-        const users = await getUsersService();
+        const users = await fetchUsersService();
         const response = {
             count: users.length,
             users: users.map((user) => {
@@ -27,5 +27,3 @@ const getUsers = async function (
         return res.status(400).json({ status: 400, message: e.message });
     }
 };
-
-export { getUsers };
