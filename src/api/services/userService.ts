@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { User, UserType } from "../models/user";
 
-export const fetchUsersService = (): Promise<UserType[]> => {
+export const fetchUsers = (): Promise<UserType[]> => {
     try {
         const docs = User.find().select("_id email").exec();
         return docs;

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { fetchUsersService } from "../services/userService";
+import * as UserService from "../services/userService";
 
 export const fetchUsers = async function (
     req: Request,
@@ -7,7 +7,7 @@ export const fetchUsers = async function (
     next: NextFunction
 ) {
     try {
-        const users = await fetchUsersService();
+        const users = await UserService.fetchUsers();
         const response = {
             count: users.length,
             users: users.map((user) => {
