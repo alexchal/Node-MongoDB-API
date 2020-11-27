@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import jtw from "jsonwebtoken";
 import * as UserService from "../services/userService";
+import * as EmailService from "../services/emailService";
 
 export const signUpUser = async (
     req: Request,
@@ -29,10 +30,12 @@ export const signUpUser = async (
                         email,
                         hash
                     );
+
                     res.status(201).json({
-                        results,
-                        message: "User created"
+                        message: `Account has been successfully created. Email: ${results.email}`
                     });
+
+                    await EmailService.sendEmail(email);
                 }
             });
         }
