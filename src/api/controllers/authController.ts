@@ -106,7 +106,7 @@ export const deleteUser = async (
     } = req;
 
     try {
-        await UserService.deleteUserFromDb(userId);
+        UserService.deleteUserFromDb(userId);
 
         res.status(200).json({
             message: "User deleted"
