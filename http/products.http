@@ -7,6 +7,20 @@ Content-Type: application/json
 
 ###
 
+# Add new product endpoint
+
+POST {{baseUrl}}/products HTTP/1.1
+Content-Type: multipart/form-data;"
+
+//TODO add productImage in Rest Client extenxtion
+
+{
+    "name": "test",
+    "price": 100,
+    "productImage": ""
+}
+
+###
 
 # Delete Product endpoint
 
