@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:8080/api
+
+# Fetch Products endpoint
+
+GET {{baseUrl}}/products HTTP/1.1
+Content-Type: application/json
+
+###
+
+
+# Delete Product endpoint
+
+DELETE {{baseUrl}}/products/5cc82927e6bf213bf463c65d HTTP/1.1
+Authorization: token 
+Content-Type: application/json
+
+###
