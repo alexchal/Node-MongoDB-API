@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8080/api
-@mockEmail = "chalvantzis12@outlook.com"
+@mockEmail = "chalvantzis12@test.com"
 @mockPassword = "testtest12"
 @userId = 
 
