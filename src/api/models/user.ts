@@ -1,10 +1,10 @@
 import { Schema, Document, model } from "mongoose";
 
-export interface UserType extends Document {
+export type UserType = Document & {
     _id: string;
     email: string;
     password: string;
-}
+};
 
 const userSchema = new Schema({
     _id: Schema.Types.ObjectId,

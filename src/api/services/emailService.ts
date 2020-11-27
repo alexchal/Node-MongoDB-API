@@ -1,6 +1,6 @@
 import nodemailer, { SendMailOptions } from "nodemailer";
 
-const admin = "chalvantzis12@outlook.com";
+const emailSender = "chalvantzis12@outlook.com";
 
 export const sendEmail = (email: string) => {
     const transporter = nodemailer.createTransport({
@@ -15,7 +15,7 @@ export const sendEmail = (email: string) => {
     });
 
     const mailOptions: SendMailOptions = {
-        from: admin,
+        from: emailSender,
         to: email,
         subject: "Thank your for registering",
         html: "<h1>Welcome to our website!!!</h1>"

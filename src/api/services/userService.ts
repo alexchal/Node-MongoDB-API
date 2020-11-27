@@ -3,8 +3,7 @@ import { User, UserType } from "../models/user";
 
 export const fetchUsers = (): Promise<UserType[]> => {
     try {
-        const docs = User.find().select("_id email").exec();
-        return docs;
+        return User.find().select("_id email").exec();
     } catch (e) {
         return e;
     }
@@ -18,7 +17,10 @@ export const findUser = (email: string): Promise<UserType[]> => {
     }
 };
 
-export const addNewUserToDb = async (email: string, hash: string) => {
+export const addNewUserToDb = async (
+    email: string,
+    hash: string
+): Promise<UserType> => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email,
@@ -26,16 +28,15 @@ export const addNewUserToDb = async (email: string, hash: string) => {
     });
 
     try {
-        const results = await user.save();
-        return results;
+        return await user.save();
     } catch (e) {
         return e;
     }
 };
 
-export const deleteUserFromDb = (userId: string) => {
+export const deleteUserFromDb = (userId: string): void => {
     try {
-        return User.deleteOne({ _id: userId }).exec();
+        User.deleteOne({ _id: userId }).exec();
     } catch (e) {
         return e;
     }

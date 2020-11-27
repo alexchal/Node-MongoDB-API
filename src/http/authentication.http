@@ -3,6 +3,8 @@
 @mockPassword = "testtest12"
 @userId = 
 
+# Sign up user endpoint 
+
 POST {{baseUrl}}/user/signup HTTP/1.1
 content-type: application/json
 
@@ -12,6 +14,8 @@ content-type: application/json
 }
 
 ###
+
+# Login user endpoint 
 
 POST {{baseUrl}}/user/login HTTP/1.1
 content-type: application/json
@@ -23,6 +27,8 @@ content-type: application/json
 
 
 ###
+
+# Delete user endpoint
 
 DELETE {{baseUrl}}/user/{{userId}} HTTP/1.1
 content-type: application/json
