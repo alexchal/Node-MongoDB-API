@@ -1,12 +1,14 @@
 @baseUrl = http://localhost:8080/api
+@mockEmail = "chalvantzis12@outlook.com"
+@mockPassword = "testtest12"
 @userId = 
 
 POST {{baseUrl}}/user/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chalvantzis19@test.com",
-    "password": "testtest19"
+    "email": {{mockEmail}},
+    "password": {{mockPassword}}
 }
 
 ###
@@ -15,8 +17,8 @@ POST {{baseUrl}}/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "chalvantzis12@test.com",
-    "password": "testtest12"
+    "email": {{mockEmail}},
+    "password": {{mockPassword}}
 }
 
 

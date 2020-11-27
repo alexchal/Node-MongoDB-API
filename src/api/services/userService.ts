@@ -18,23 +18,19 @@ export const findUser = (email: string): Promise<UserType[]> => {
     }
 };
 
-export const addNewUserToDb = async (
-    email: string,
-    hash: string
-): Promise<void> => {
+export const addNewUserToDb = async (email: string, hash: string) => {
     const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email,
         password: hash
     });
-    user.save()
-        .then((result) => {
-            return result;
-        })
-        .catch((e) => {
-            console.log(e);
-            return e;
-        });
+
+    try {
+        const results = await user.save();
+        return results;
+    } catch (e) {
+        return e;
+    }
 };
 
 export const deleteUserFromDb = (userId: string) => {
