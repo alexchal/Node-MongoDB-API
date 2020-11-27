@@ -58,3 +58,32 @@ export const fetchProducts = async (
         return res.status(500).json({ error });
     }
 };
+
+export const deleteProduct = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const { productId } = req.params;
+
+    try {
+        await ProductService.deleteProduct(productId);
+
+        res.status(200).json({
+            message: "Product deleted",
+            request: {
+                type: "POST",
+                url: "http://localhost:8080/api/products/",
+                body: {
+                    name: "String",
+                    price: "Number"
+                }
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message:
+                "Ooops something went wrong. Make sure you pass the correct productId"
+        });
+    }
+};
