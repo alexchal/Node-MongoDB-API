@@ -55,6 +55,7 @@ export const loginUser = async (
 
     try {
         const user = await UserService.findUser(email);
+
         if (user.length < 1) {
             return res.status(401).json({
                 messgage: "Auth failed"

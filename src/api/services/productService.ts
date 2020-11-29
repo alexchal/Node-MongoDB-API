@@ -5,6 +5,14 @@ export const fetchProducts = (): Promise<ProductType[]> => {
     return Product.find().exec();
 };
 
+export const fetchOneProduct = (
+    productId: string
+): Promise<ProductType | null> => {
+    return Product.findById(productId)
+        .select("_id name price productImage")
+        .exec();
+};
+
 export const addProduct = async (
     name: string,
     price: number,
