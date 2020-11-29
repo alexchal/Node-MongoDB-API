@@ -5,7 +5,7 @@ export const fetchProducts = (): Promise<ProductType[]> => {
     return Product.find().exec();
 };
 
-export const fetchProduct = (
+export const fetchOneProduct = (
     productId: string
 ): Promise<ProductType | null> => {
     return Product.findById(productId)

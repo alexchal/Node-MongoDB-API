@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/", ProductController.fetchProducts);
 
-router.get("/:productId", ProductController.fetchProduct);
+router.get("/:productId", ProductController.fetchOneProduct);
 
 router.post(
     "/",

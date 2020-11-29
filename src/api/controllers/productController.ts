@@ -31,7 +31,7 @@ export const fetchProducts = async (
     }
 };
 
-export const fetchProduct = async (
+export const fetchOneProduct = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -39,7 +39,7 @@ export const fetchProduct = async (
     const { productId } = req.params;
 
     try {
-        const product = await ProductService.fetchProduct(productId);
+        const product = await ProductService.fetchOneProduct(productId);
 
         const response = {
             product: product
