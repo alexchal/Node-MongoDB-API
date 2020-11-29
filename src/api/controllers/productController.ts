@@ -31,14 +31,46 @@ export const fetchProducts = async (
     }
 };
 
+export const fetchProduct = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const { productId } = req.params;
+
+    try {
+        const product = await ProductService.fetchProduct(productId);
+
+        const response = {
+            product: product
+                ? res.status(200).json({
+                      product
+                  })
+                : res
+                      .status(404)
+                      .json({ message: "No valid entry found for provided ID" })
+        };
+
+        return response;
+    } catch (error) {
+        return res.status(500).json({ error });
+    }
+};
+
 export const addProduct = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const { name, price } = req.body;
-        const { file } = req;
+        const {
+            file,
+            body: { name, price }
+        } = req;
+
+        if (!file) {
+            throw "Please provide an image";
+        }
 
         const product = await ProductService.addProduct(name, price, file);
 
@@ -66,23 +98,18 @@ export const deleteProduct = async (
     const { productId } = req.params;
 
     try {
-        await ProductService.deleteProduct(productId);
+        const results = await ProductService.deleteProduct(productId);
+
+        if (results.deletedCount === 0) throw "The product does not exist";
 
         res.status(200).json({
             message: "Product deleted",
             request: {
-                type: "POST",
-                url: "http://localhost:8080/api/products/",
-                body: {
-                    name: "String",
-                    price: "Number"
-                }
+                type: "GET",
+                url: "http://localhost:8080/api/products/"
             }
         });
     } catch (error) {
-        return res.status(500).json({
-            message:
-                "Ooops something went wrong. Make sure you pass the correct productId"
-        });
+        return res.status(500).json({ error });
     }
 };
