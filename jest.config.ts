@@ -8,6 +8,7 @@ export default {
         "^.+\\.(ts|tsx)$": "ts-jest"
     },
     testEnvironment: "node",
+    collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
     coverageThreshold: {
         global: {
             branches: 0,
