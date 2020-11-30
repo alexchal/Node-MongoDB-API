@@ -6,30 +6,30 @@ import { User, UserType } from "../../models/user";
 
 const request = supertest(app);
 
-describe("Users Routeee", () => {
+describe("Users Route", () => {
     setupDB.setupDB("endpoint-testing");
 
     it("it should fetch users", async (done) => {
         const users = [
             new User({
                 _id: new mongoose.Types.ObjectId(),
-                email: "fakeemai@gmail.com",
-                password: "testtest"
+                email: "mockemail@gmail.com",
+                password: "password"
             }),
             new User({
                 _id: new mongoose.Types.ObjectId(),
-                email: "fakeemai@gmail.com",
-                password: "testtest"
+                email: "mockemail@gmail.com",
+                password: "password"
             })
         ];
 
-        const mongoDBPromises = [];
+        const mongoDbPromises = [];
 
         for (let i = 0; i < users.length; i++) {
-            mongoDBPromises.push(await users[i].save());
+            mongoDbPromises.push(await users[i].save());
         }
 
-        await Promise.all(mongoDBPromises);
+        await Promise.all(mongoDbPromises);
 
         const res = await request.get("/api/users");
 
