@@ -35,7 +35,7 @@ export const signUpUser = async (
                         message: `Account has been successfully created. Email: ${results.email}`
                     });
 
-                    await EmailService.sendEmail(email);
+                    // await EmailService.sendEmail(email);
                 }
             });
         }
