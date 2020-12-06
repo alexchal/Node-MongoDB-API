@@ -43,26 +43,22 @@ mongoose.connect(
     }
 );
 
-app.use((req: Request, res: Response, next) => {
-    const error = new Error("Not Found");
-    next(error);
+app.use((req: Request, res: Response, next: NextFunction) => {
+    try {
+        throw new Error("Not found");
+    } catch (error) {
+        error.name = 404;
+        next(error);
+    }
 });
 
-app.use(
-    (
-        error: { status: any; message: any },
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) => {
-        res.status(error.status || 500);
-        res.json({
-            error: {
-                message: error.message
-            },
-            req
-        });
-    }
-);
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+    res.status((error.name as unknown) as number).send({
+        error: {
+            status: error.name || 500,
+            message: error.message || "Internal Server Error"
+        }
+    });
+});
 
 export default app;
